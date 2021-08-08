@@ -1,0 +1,23 @@
+{
+  "name": "BankingSystem",
+  "version": "1.0.0",
+  "description": "Banking System developed as the first task of The Sparks Foundation Internship. Web Development role. The application has a database of customers and transactions. Customers can tranfer money between each other and the application keeps track of the transactions and current balance of each customer",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "nodemon ."
+  },
+  "keywords": [
+    "Banking System",
+    "EJS",
+    "Transfer Money"
+  ],
+  "author": "Suelen rodrigues",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
