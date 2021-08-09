@@ -4,7 +4,8 @@
   "description": "Banking System developed as the first task of The Sparks Foundation Internship. Web Development role. The application has a database of customers and transactions. Customers can tranfer money between each other and the application keeps track of the transactions and current balance of each customer",
   "main": "src/server.js",
   "scripts": {
-    "start": "nodemon ."
+    "start": "nodemon .",
+    "init-db": "node ./src/db/init.js"
   },
   "keywords": [
     "Banking System",
@@ -15,7 +16,9 @@
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.6",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "sqlite": "^4.0.23",
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

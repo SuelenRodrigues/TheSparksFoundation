@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emerald Banking System</title>
     <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/customers.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;700&display=swap" rel="stylesheet">
@@ -36,19 +37,9 @@
                 <a href="/transactions" class="buttons">Transactions</a>
             </div>
         </section>
-        <aside>
-            <div class='border'></div>
-            <div class="main-img">
-                <img src="/images/group.jpg" alt="group of people">
-            </div>
-            <div class="main-img2">
-                <img src="/images/money.svg" alt="money notes">
-            </div>
-            <div class="main-img3">
-                <img src="/images/report.svg" alt="report image">
-            </div>
-        </aside>
-    </main>
+        
+    <%- include(`parts/${page}`) %>
+    
     <footer>
         <div class="logo">
             <img src="/images/logo.png" alt="emerald logo">
