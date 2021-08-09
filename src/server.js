@@ -13,8 +13,4 @@ server.use(express.urlencoded({extended: true}));
 
 server.use(route); //express, use file route
 
-/*server.get("/", function(req,res){
-    res.render("pages/index");
-});*/
-
 server.listen(8088, ()=> console.log("Running..."));

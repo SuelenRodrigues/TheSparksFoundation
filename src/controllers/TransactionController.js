@@ -1,49 +1,57 @@
-const Database = require('../db/config')
+const Database = require('../db/config');
 
 module.exports = {
-    async index(req, res){
-        const db = await Database()
-        const roomId = req.params.room
-        const questionId = req.params.question
-        const action = req.params.action
-        const password = req.body.password
-
-        /* Check if the password is correct */
-        const verifyRoom = await db.get(`SELECT * FROM rooms WHERE id = ${roomId}`)
-        if(verifyRoom.pass == password){
-            if(action == "delete"){
-
-                await db.run(`DELETE FROM questions WHERE id = ${questionId}`)
-
-            }else if(action == "check"){
-
-                await db.run(`UPDATE questions SET read = 1 WHERE id = ${questionId}`)
-
-            }
-            res.redirect(`/room/${roomId}`)
-        } else{
-            res.render('passincorrect', {roomId: roomId})
-        }
-
-
-    },
 
     async create(req, res){
-        const db = await Database()
-        let name = "Joseph Lin";
-        let email = "lin.jose@gmail.com";
-        let balance = 240;
+        const db = await Database();
+        const sender = req.body.senderTransfer;
+        const receiver = req.body.receiver;
+        let amount = Number(req.body.amount); 
+        const senderdb = await db.get(`SELECT * FROM customers WHERE name = "${sender}"`);
+        let senderBalance =  Number(senderdb.balance);
+        const receiverdb = await db.get(`SELECT * FROM customers WHERE name = "${receiver}"`);
+        let receiverBalance =  Number(receiverdb.balance);
+       
+        console.log('Type of amount: ', typeof amount);
+        senderBalance -= amount;
+        
+        receiverBalance += amount;
+        
 
-        await db.run(`INSERT INTO customers(
-            name,
-            email,
-            balance
-        )VALUES(
-            "${name}",
-            ${email},
-            240
-        )`)
+        await db.exec(`INSERT INTO transfers (
+            sender,
+            receiver,
+            amount)
+            VALUES("${sender}", "${receiver}", ${amount})
+        `);
 
-        res.redirect(`/`)
-    }
+        await db.run(`UPDATE customers SET balance = ${senderBalance} WHERE name = "${sender}"`);
+        await db.run(`UPDATE customers SET balance = ${receiverBalance} WHERE name = "${receiver}"`);
+        
+
+        res.redirect(`/customers`)
+    },
+
+    async open(req, res){
+        const db = await Database();
+        const transactionsdb = await db.all(`SELECT * FROM transfers`);
+        console.log("tipo de todas as transactions", typeof transactionsdb)
+
+        res.render("index", {page: "transactions", transactions:transactionsdb});
+    },
+
+    async openCustomer(req, res){
+        console.log('Entrou no open Customer');
+        const db = await Database();
+        const customerName = req.params.customerName;
+        const querydb = "SELECT * FROM transfers WHERE sender like " + customerName;
+        console.log(typeof customerName);
+        console.log(querydb);
+
+        const transactionsCustomer = await db.all(querydb);
+        console.log("tipo da transaction do customer", typeof transactionsCustomer);
+
+        res.render("index", {page: "transactions", transactions:transactionsCustomer});
+
+    },
 }

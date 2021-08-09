@@ -10,30 +10,14 @@
             </tr>
         </thead>
         <tbody>
+            <% customers.forEach(customer => {%>
             <tr>
-                <td>Mary Jane</td>
-                <td>mary.jane@gmail.com</td>
-                <td>450.00</td>
-                <td><a href="#" onclick="modal()" class='buttons'>Transfer</a></td>
+                <td><a href="/customer/'<%= customer.name %>'"><%= customer.name%></a></td>
+                <td><%= customer.email%></td>
+                <td><%= customer.balance%></td>
+                <td><a href="#" onclick="Modal.open('<%= customer.name%>')" class='buttons openModal'>Transfer</a></td>
             </tr>
-            <tr>
-                <td>Jack Smith</td>
-                <td>smith.jack@hotmail.com</td>
-                <td>370.00</td>
-                <td><a href="#" onclick="Modal.open()" class='buttons'>Transfer</a></td>
-            </tr>
-            <tr>
-                <td>Victoria Kennedy</td>
-                <td>vic.kennedy@gmail.com</td>
-                <td>7980.00</td>
-                <td><a href="#" onclick="Modal.open()" class='buttons'>Transfer</a></td>
-            </tr>
-            <tr>
-                <td>Yian Jouw</td>
-                <td>naiy.jouw@live.com</td>
-                <td>2960.00</td>
-                <td><a href="#" onclick="Modal.open()"class='buttons'>Transfer</a></td>
-            </tr>
+            <% });  %>
         </tbody>
     </table>
 </aside>
@@ -43,19 +27,18 @@
         <div class="modal-content">
             <div id="form">
                 <h2>New Transaction</h2>
-                <form action="" onsubmit="Form.submit(event)" method="POST">
+                <form action="/customers/create" method="POST">
                 <div class="input-group">
-                    <label for-id="sender" class="sr-only">Sender</label>
-                    <input type="text" id="sender" name="sender" value="Mary Jane" required readonly>
+                    <label for-id="senderTransfer" class="sr-only">Sender</label>
+                    <input type="text" id="senderTransfer" name="senderTransfer" value="" required readonly>
                 </div>
                 <div class="input-group">
                     <label for="receiver" class="sr-only">Receiver</label>
                     <select name="receiver" id="receiver" required>
                         <option value="">Select receiver</option>
-                        <option value="Jack Johnson">Jack Johnson</option>
-                        <option value="Mariana Thompson">Mariana Thompson</option>
-                        <option value="Robert Lin">Robert Lin</option>
-                        <option value="Augusto Luis">Augusto Luis</option>
+                        <% customers.forEach(customer => {%>
+                        <option value="<%= customer.name%>"><%= customer.name%></option>
+                        <% });  %>
                     </select>
                 </div>
                 <div class="input-group">
@@ -63,7 +46,7 @@
                     <input type="number" id="amount" name="amount" step="0.01" placeholder="0.00" required>
                 </div>
                 <div class="input-group actions">
-                    <a href="#" onclick="modal()" class="buttons button cancel">Cancel</a>
+                    <a href="#" onclick="Modal.close()" class="buttons button cancel">Cancel</a>
                     <button class='buttons'>Transfer</button>
                 </div>
             </form>

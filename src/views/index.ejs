@@ -23,7 +23,7 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/customers">Customers</a></li>
-                <li><a href="/transactions">Transactions</a></li>
+                <li><a href="/transactions">Transfers</a></li>
             </ul>
         </nav>
     </header>
@@ -31,19 +31,19 @@
         <section class="main-content">
             <h5>Welcome</h5>
             <h1>Emerald Banking System</h1>
-            <p>To view all transactions click in Transactions.<br>To start a new transaction click in Customers.</p>
+            <p>To view all transfers click in Transactions.<br>To start a new transaction click in Customers.</p>
             <div class="div-buttons">
-                <a href="/customers" class="buttons">Customers</a>
-                <a href="/transactions" class="buttons">Transactions</a>
+                <a href="/customers" class="buttons">View All Customers</a>
+                <a href="/transactions" class="buttons">View All Transactions</a>
             </div>
         </section>
         
     <%- include(`parts/${page}`) %>
-    
+
     <footer>
-        <div class="logo">
+        
             <img src="/images/logo.png" alt="emerald logo">
-        </div>
+        
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/customers">Customers</a></li>

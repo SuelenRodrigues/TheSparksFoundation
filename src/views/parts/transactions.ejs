@@ -9,27 +9,13 @@
             </tr>
         </thead>
         <tbody>
+            <% transactions.forEach(transaction => {%>
             <tr>
-                <td>Mary Jane</td>
-                <td>Victoria Kennedy</td>
-                <td>450.00</td>
+                <td><%= transaction.sender%></td>
+                <td><%= transaction.receiver%></td>
+                <td><%= transaction.amount%></td>
             </tr>
-            <tr>
-                <td>Jack Smith</td>
-                <td>Yian Jouw</td>
-                <td>370.00</td>
-            </tr>
-            <tr>
-                <td>Victoria Kennedy</td>
-                <td>Jack Smith</td>
-                <td>7980.00</td>
-            </tr>
-            <tr>
-                <td>Yian Jouw</td>
-                <td>Mary Jane</td>
-                <td>2960.00</td>
-            </tr>
-            
+            <% });  %>
         </tbody>
     </table>
 </aside>

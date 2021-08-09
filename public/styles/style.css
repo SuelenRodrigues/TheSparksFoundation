@@ -123,7 +123,7 @@ main.container {
   justify-content: space-between;
   align-items: flex-start;
   margin: 0 2rem;
-  height: 72vh;
+  min-height: 72vh;
 }
 
 main .main-content {
@@ -147,11 +147,12 @@ main .main-content {
 .buttons {
   background: var(--bright-green-background);
   width: 8rem;
-  height: 2.5rem;
+  height: 3rem;
   display: flex;
   border-radius: 0.25rem;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 aside {
@@ -199,13 +200,14 @@ footer {
   color: var(--dark-blue-background);
   height: 4.5rem;
   width: 100vw;
-  position: fixed;
-  bottom: 0;
+  /*position: fixed;
+  bottom: 0;*/
 }
 
-footer .logo img {
+footer img {
   margin-bottom: 1rem;
   width: 7rem;
+  clip-path: inset(11% 7% 17% 10%);
 }
 
 footer ul {
